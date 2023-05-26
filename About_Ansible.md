@@ -1,0 +1,2 @@
+- Ansibles là một tool IT automation
+- Nó có thể config hệ thống, triển khai phần mềm, và sắp xếp các tasks nâng cao hơn như triển khai liên tục hoặc cập nhật liên tục không ngừng hoạt động
