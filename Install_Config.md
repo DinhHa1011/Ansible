@@ -12,7 +12,9 @@ apt-get install -y ansible
 ansible --version
 ```
 ### Mô hình hoạt động
+
 ![](https://hackmd.io/_uploads/rJKaK5EIh.png)
+
 - Ansible kết nối với các máy con bằng SSH
 - Inventory là tệp lưu địa chỉ cacsmasy con trên. Chia thành các nhóm A-B để quản lý: Nhóm web server và nhóm database server
 - Playbook là file chứa các task của Ansible được ghi dưới định dạng YAML. Máy ansible sẽ đọc các task trong Playbook và đẩy các lệnh thực thi tương ứng bằng Python xuống các máy con
