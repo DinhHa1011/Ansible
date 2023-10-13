@@ -1,0 +1,9 @@
+---
+- name: Create database
+  command: mysql --execute="CREATE DATABASE maildb;"
+
+- name: Create user
+  command: mysql --execute="CREATE USER 'mailuser'@'localhost' IDENTIFIED BY 'mailPWD';"
+
+- name: Create grant all privileges
+  command: mysql --execute="GRANT ALL PRIVILEGES ON maildb.* TO 'mailuser'@'localhost';"
