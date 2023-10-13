@@ -1,0 +1,32 @@
+---
+- name: Install
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages }}"
+  register: result
+
+- debug:
+    var: result
+
+- name: secure mariadb
+  expect:
+    command: "sudo mysql_secure_installation"
+    responses:
+      'Enter current password for root (enter for none)': ''
+      'Set root password': '{{ mysql_pwd }}'
+      'Remove anonymous users': 'y'
+      'Disallow root login remotely': 'y'
+      'Remove test database and access to it': 'y'
+      'Reload privilege tables now': 'y'
+  register: secure_mariadb
+  failed_when: "'... Failed!' in secure_mariadb.stdout_lines"
+# To see detailed output
+- debug:
+    var: secure_mariadb
+- name: changed file mariadb.cnf
+  template:
+    src: mariadb.cnf.j2
+    dest: /etc/mysql/mariadb.cnf
+- name: execute root pass
+  command: mysql --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ mysql_pwd }}';"
