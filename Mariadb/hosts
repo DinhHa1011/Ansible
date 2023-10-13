@@ -1,0 +1,11 @@
+[mariadb]
+mariadb1        ansible_ssh_host=         ansible_user=root
+mariadb2        ansible_ssh_host=         ansible_user=root
+mariadb3        ansible_ssh_host=         ansible_user=root
+
+[mailserver]
+server1         ansible_ssh_host=
+server2         ansible_ssh_host=
+
+[test]
+server1         ansible_ssh_host=
