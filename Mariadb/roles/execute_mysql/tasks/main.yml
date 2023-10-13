@@ -1,0 +1,16 @@
+---
+- name: Copy stream data file
+  template:
+    src: schema.sql.j2
+    dest: /tmp/schema.sql
+
+- name: execute schema
+  command: mysql --execute="source /tmp/schema.sql"
+
+- name: Copy data database file
+  template:
+    src: data.sql.j2
+    dest: /tmp/data.sql
+
+- name: execute data
+  command: mysql --execute="source /tmp/data.sql"
