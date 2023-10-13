@@ -1,0 +1,37 @@
+USE maildb;
+CREATE TABLE virtual_Status(
+        status_id INT NOT NULL,
+        status_desc VARCHAR(50) NOT NULL,
+        status_note VARCHAR(100),
+        PRIMARY KEY (status_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE virtual_Domains(
+        domain_name VARCHAR(100) not null,
+        domain_desc VARCHAR(100) not null,
+        status_id INT NOT NULL DEFAULT 1,
+PRIMARY KEY (domain_name),
+FOREIGN KEY (status_id) REFERENCES virtual_Status(status_id) ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE virtual_Users (
+        domain_name VARCHAR(100) not null,
+        email VARCHAR(100) NOT NULL,
+        password VARCHAR(106) NOT NULL,
+        fullname VARCHAR(50) NOT NULL,
+        department VARCHAR(50) NOT NULL,
+        status_id INT NOT NULL DEFAULT 1,
+PRIMARY KEY (email),
+FOREIGN KEY (domain_name) REFERENCES virtual_Domains(domain_name) ON DELETE CASCADE,
+FOREIGN KEY (status_id) REFERENCES virtual_Status(status_id) ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE virtual_Aliases (
+        domain_name VARCHAR(100) not null,
+        source VARCHAR(100) NOT NULL,
+        destination TEXT NOT NULL,
+        status_id INT NOT NULL DEFAULT 1,
+PRIMARY KEY (source),
+FOREIGN KEY (domain_name) REFERENCES virtual_Domains(domain_name) ON DELETE CASCADE,
+FOREIGN KEY (status_id) REFERENCES virtual_Status(status_id) ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
