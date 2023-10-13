@@ -1,0 +1,7 @@
+---
+- name: Update
+  command: "sudo apt update"
+  register: result
+
+- debug:
+    var: result
