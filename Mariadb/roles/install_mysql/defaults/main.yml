@@ -1,0 +1,6 @@
+---
+mysql_pwd: HaNoi2021!
+packages:
+        - dialog
+        - mariadb-server
+        - mariadb-client
