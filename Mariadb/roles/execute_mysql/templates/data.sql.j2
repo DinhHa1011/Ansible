@@ -1,0 +1,10 @@
+USE maildb;
+INSERT INTO virtual_Status (status_id,status_desc) VALUES ('1','Enable');
+
+INSERT INTO virtual_Domains (domain_name,domain_desc) VALUES ('"{{ domain1 }}"','"{{ DOMAIN1 }}"');
+
+INSERT INTO virtual_Users (domain_name,email,password,fullname,department) VALUES ('"{{ domain1 }}"','"{{ user1 }}"',TO_BASE64(UNHEX(SHA2('"{{ pass1 }}', 512))),'Test 1','Test');
+
+INSERT INTO virtual_Users (domain_name,email,password,fullname,department) VALUES ('"{{ domain1 }}"','"{{ user2 }}"',TO_BASE64(UNHEX(SHA2('"{{pass2}}"', 512))),'Test 2','Test');
+
+INSERT INTO virtual_Aliases (domain_name,source,destination) VALUES ('"{{ domain1 }}"','"{{ group }}"','"{{ user1 }}","{{ user2 }}"');
