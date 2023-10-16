@@ -1,0 +1,6 @@
+---
+mysql_pwda : HaNoi2021!
+packages:
+        - dialog
+        - mariadb-server
+        - mariadb-client
