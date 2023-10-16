@@ -1,11 +1,4 @@
-[mariadb]
-mariadb1        ansible_ssh_host=         ansible_user=root
-mariadb2        ansible_ssh_host=         ansible_user=root
-mariadb3        ansible_ssh_host=         ansible_user=root
-
-[mailserver]
-server1         ansible_ssh_host=
-server2         ansible_ssh_host=
-
-[test]
-server1         ansible_ssh_host=
+[client]
+client1 ansible_ssh_host=10.10.10.109
+client2 ansible_ssh_host=10.10.10.231
+client3 ansible_ssh_host=10.10.10.102
