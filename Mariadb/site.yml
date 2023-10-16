@@ -1,13 +1,13 @@
 ---
-- hosts: mariadb
+- hosts: all
   roles:
-          - role: common
-- hosts: mariadb
+    - role: common
+- hosts: all
   roles:
-          - role: install_mysql
-#- hosts: mariadb
-#  roles:
-#          - role: create_db_mysql
-#- hosts: mariadb
-#  roles:
-#          - role: execute_mysql
+    - role: install_mysql
+- hosts: all
+  roles:
+    - role: create_db_mysql
+- hosts: all
+  roles:
+    - role: execute_mysql
