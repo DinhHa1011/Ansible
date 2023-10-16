@@ -1,1 +1,8 @@
-mysql_pwd : HaNoi2023!
+mysql_pwd: HaNoi2023!
+domain : hadt3.space
+DOMAIN : HADT3.SPACE
+user1 : test13@hadt.space
+pass1 : test13
+user2 : test23@hadt.space
+pass2 : test23
+group : group_test3@hadt.space
