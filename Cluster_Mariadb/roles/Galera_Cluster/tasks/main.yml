@@ -1,0 +1,20 @@
+---
+#- name: Stop MySQL
+  #  systemd:
+          #    name: mariadb
+    #    state: stopped
+    #  when: inventory_hostname == 'client1'
+- name: Config Mysql
+  template:
+    src: 50-server.cnf.j2
+    dest: /etc/mysql/mariadb.conf.d/50-server.cnf
+
+- name: Initialize Galera Cluster
+  command: galera_new_cluster
+  when: inventory_hostname == 'client1'
+
+- name: Restart MySQL service using systemctl
+  systemd:
+    name: mysql
+    state: restarted
+  when: inventory_hostname == 'client2' or inventory_hostname == 'client3'
