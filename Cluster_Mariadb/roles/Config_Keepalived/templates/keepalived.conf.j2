@@ -1,0 +1,51 @@
+global_defs {
+   router_id LVS_DEVEL
+}
+
+
+
+vrrp_script check_haproxy {
+
+    script "sh /etc/keepalived/check_mysql.sh"
+
+    interval 2
+
+    weight -4
+
+}
+
+
+
+vrrp_instance VI_1 {
+
+    state {{ state }}
+
+    interface {{ interface }}
+
+    virtual_router_id 67
+
+    priority {{ priority }}
+
+    advert_int 1
+
+    authentication {
+
+        auth_type PASS
+
+        auth_pass 1111
+
+    }
+
+    virtual_ipaddress {
+
+        {{ vip_address }}
+
+    }
+
+    track_script {
+
+       check_haproxy
+
+     }
+
+}
