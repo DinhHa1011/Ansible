@@ -1,0 +1,25 @@
+---
+- name: Config Keepalived
+  template:
+          src: keepalived.conf.j2
+          dest: /etc/keepalived/keepalived.conf
+- name: Copy file
+  copy:
+          src: check_mysql.sh
+          dest: /etc/keepalived/check_mysql.sh
+- name: Set file permissions for keepalived.conf
+  file:
+          path: /etc/keepalived/keepalived.conf
+          owner: root
+          group: root
+          mode: '0600'
+- name: Create a system user for keepalived_script
+  user:
+          name: keepalived_script
+          comment: "Keepalived Script User"
+          system: yes
+          shell: /sbin/nologin
+- name: Restart keepalived service
+  systemd:
+          name: keepalived
+          state: restarted
