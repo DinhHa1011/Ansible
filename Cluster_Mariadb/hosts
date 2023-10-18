@@ -1,0 +1,4 @@
+[client]
+client1 ansible_ssh_host=10.10.10.115
+client2 ansible_ssh_host=10.10.10.27
+client3 ansible_ssh_host=10.10.10.243
