@@ -1,0 +1,25 @@
+---
+- name: Install Packages
+  apt:
+          name: "{{ item }}"
+          state: present
+  loop:
+          - rsync
+          - net-tools
+- name: Add MariaDB GPG key
+  apt_key:
+          url: 'https://mariadb.org/mariadb_release_signing_key.asc'
+- name: Add MariaDB repository
+  copy:
+          content: 'deb [arch=amd64] http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.5/ubuntu focal main'
+          dest: '/etc/apt/sources.list.d/mariadb.list'
+- name: Update APT cache
+  apt:
+          update_cache: yes
+- name: Install Mariadb and Keepalived
+  apt:
+          name: "{{ item }}"
+          state: present
+  loop:
+          - mariadb-server
+          - keepalived
