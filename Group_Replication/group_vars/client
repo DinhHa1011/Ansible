@@ -1,4 +1,4 @@
-ip_all : 10.0.0.135:33061, 10.0.0.137:33061
+ip_all : 192.168.54.223:33061, 192.168.54.247:33061, 192.168.54.227:33061
 user : hadt
 password : Dinhha1011@
 uuid_result: "{{ hostvars['master1']['uuid_result'] }}"
