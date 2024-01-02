@@ -1,0 +1,5 @@
+---
+- name: Start Group Replication
+  command: mysql --execute="RESET MASTER;"
+- name: Start Group Replication
+  command: mysql --execute="START GROUP_REPLICATION;"

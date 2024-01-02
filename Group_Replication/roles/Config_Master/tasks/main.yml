@@ -1,0 +1,7 @@
+---
+- name: Gen Gr Replication
+  command: mysql --execute="SELECT UUID();"
+  register: mysql_query_result
+- name: Get UUID result as a fact
+  set_fact:
+          uuid_result: "{{ mysql_query_result.stdout | regex_findall('([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})') | first }}"

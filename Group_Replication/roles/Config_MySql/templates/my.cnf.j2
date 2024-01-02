@@ -1,0 +1,18 @@
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mysql.conf.d/
+[mysqld]
+
+server_id={{ server_id }}
+bind-address=0.0.0.0
+gtid_mode=ON
+enforce_gtid_consistency=ON
+binlog_checksum=NONE
+
+plugin_load_add='group_replication.so'
+group_replication_single_primary_mode=OFF
+loose-group_replication_group_name="{{ uuid_result }}"
+loose-group_replication_start_on_boot=OFF
+loose-group_replication_local_address= "{{ ip }}:33061"
+loose-group_replication_group_seeds="{{ ip_all }}"
+loose-group_replication_bootstrap_group=OFF
+report_host={{ ip }}

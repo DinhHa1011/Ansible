@@ -1,0 +1,13 @@
+---
+- name: Set bin log =0
+  command: mysql --execute="SET SQL_LOG_BIN=0;"
+- name: create user replication
+  command: mysql --execute="CREATE USER IF NOT EXISTS '{{ user }}'@'%' IDENTIFIED WITH mysql_native_password BY '{{ password }}';"
+- name: Grant replication
+  command: mysql --execute="GRANT REPLICATION SLAVE ON *.* TO '{{ user }}'@'%';"
+- name: Flush provileges
+  command: mysql --execute="FLUSH PRIVILEGES;"
+- name: Set bin log = 1
+  command: mysql --execute="SET SQL_LOG_BIN=1;"
+- name: change master
+  command: mysql --execute="CHANGE MASTER TO MASTER_USER='{{ user }}', MASTER_PASSWORD='{{ password }}' FOR CHANNEL 'group_replication_recovery';"

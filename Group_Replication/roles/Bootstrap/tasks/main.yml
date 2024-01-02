@@ -1,0 +1,9 @@
+---
+- name: Bootstrap one member
+  command: mysql --execute="SET GLOBAL group_replication_bootstrap_group=ON;"
+- name: Start Group Replication
+  command: mysql --execute="RESET MASTER;"
+- name: Start Gr Replication
+  command: mysql --execute="START GROUP_REPLICATION;"
+- name: Create multi group
+  command: mysql --execute="SET GLOBAL group_replication_bootstrap_group=OFF;"

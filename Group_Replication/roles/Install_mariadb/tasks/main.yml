@@ -1,0 +1,19 @@
+---
+- name: Update server P1
+  apt:
+          update-cache: yes
+- name: Install MySQL Server
+  apt:
+          name: mysql-server
+          state: present
+- name: secure mariadb
+  expect:
+          command: mysql_secure_installation
+          responses:
+                  'Press y|Y for Yes, any other key for No': 'y'
+                  'Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG': '2'
+                  'Remove anonymous users? (Press y|Y for Yes, any other key for No)': 'y'
+                  'Disallow root login remotely? (Press y|Y for Yes, any other key for No)': 'y'
+                  'Remove test database and access to it? (Press y|Y for Yes, any other key for No)': 'y'
+                  'Reload privilege tables now? (Press y|Y for Yes, any other key for No)': 'y'
+          timeout: 1
